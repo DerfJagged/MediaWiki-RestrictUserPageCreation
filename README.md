@@ -3,6 +3,8 @@ A MediaWiki extension that prevents users from creating a User Page unless
 they have submitted a required number of edits to the wiki. If Moderation
 is installed, only approved edits are counted.
 
+<img src="https://consolemods.org/wiki/images/8/8f/RestrictUserPageCreation.PNG" width="60%" height="auto">
+
 ## Installation
 Requires Mediawiki 1.35 or higher. Add the following to LocalSettings.php:
 
