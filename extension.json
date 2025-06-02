@@ -2,7 +2,7 @@
     "name": "RestrictUserPageCreation",
     "author": "[https://consolemods.org/wiki/User:Derf Derf Jagged]",
     "version": "1.0",
-    "url": "https://www.mediawiki.org/wiki/Extension:Restrict_User_Page_Creation",
+    "url": "https://www.mediawiki.org/wiki/Extension:RestrictUserPageCreation",
     "description": "Prevents users from creating user pages unless they have a specified number of edits.",
     "config": {
 	"RestrictUserPageCreationEditThreshold": 2
