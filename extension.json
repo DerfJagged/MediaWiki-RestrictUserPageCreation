@@ -22,5 +22,6 @@
     "requires": {
         "MediaWiki": ">= 1.35"
     },
+    "license-name": "MIT",
     "manifest_version": 1
 }
