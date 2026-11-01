@@ -1,7 +1,7 @@
 # RestrictUserPageCreation
 A MediaWiki extension that prevents users from creating a User Page or
 sending email to other users unless they have submitted a required number
-of edits to the wiki. Intended to be used as an anti-spam measure.
+of edits to the wiki. It is intended to be used as an anti-spam measure.
 
 If Moderation is installed, only approved edits are counted.
 
