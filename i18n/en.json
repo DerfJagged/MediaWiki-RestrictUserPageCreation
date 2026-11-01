@@ -4,5 +4,6 @@
             "Derf Jagged"
         ]
     },
-    "restrictuserpagecreation-denied": "You must submit $1 edits to this wiki before you can create a user page."
+    "restrictuserpagecreation-userpage-denied": "You must submit $1 edits to this wiki before you can create a user page.",
+    "restrictuserpagecreation-email-denied": "You must submit $1 edits to this wiki before you can email other users."
 }

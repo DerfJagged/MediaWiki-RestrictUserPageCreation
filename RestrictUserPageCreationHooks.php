@@ -1,16 +1,13 @@
 <?php
 
 class RestrictUserPageCreationHooks {
-    // Default edit threshold (can be overridden in LocalSettings.php)
-    public static $threshold = 2;
-
     public static function onEditFilterMergedContent(
         $context,
         $content,
-	$status,
+    	$status,
         $summary,
-	$user,
-	$minoredit
+    	$user,
+    	$minoredit
     ): bool {
         // Get the Title object from the context (Article or IContextSource)
         if ( method_exists( $context, 'getTitle' ) ) {
@@ -27,18 +24,45 @@ class RestrictUserPageCreationHooks {
         // Allow if editing an existing page
         if ( $title->exists() ) {
             return true;
-	}
+	    }
 
-	// Use the configurable threshold
-        $threshold = MediaWiki\MediaWikiServices::getInstance()
-	    ->getMainConfig()
-	    ->get( 'RestrictUserPageCreationEditThreshold' );
-
+	    // Use the configurable threshold
+        $userpageThreshold = 2; // Default
+        try {
+            $threshold = MediaWiki\MediaWikiServices::getInstance()
+	        ->getMainConfig()
+	        ->get( 'RestrictUserPageCreationEditThreshold' );
+            $userpageThreshold = $threshold;
+        } catch (Exception $e) {}
 
         // Check user's edit count
-        if ( $user->getEditCount() < $threshold ) {
+        if ( $user->getEditCount() < $userpageThreshold ) {
             $status->fatal(
-                wfMessage( 'restrictuserpagecreation-denied' )->params( $threshold )
+                wfMessage( 'restrictuserpagecreation-userpage-denied' )->params( $userpageThreshold )
+            );	
+            return false;
+        }
+
+        return true;
+    }
+
+    public static function onEmailUserAuthorizeSend( 
+        $sender, 
+        $status
+    ): bool {
+        // Use the configurable threshold
+        $emailThreshold = 2; //Default
+        try {
+            $threshold = MediaWiki\MediaWikiServices::getInstance()
+	        ->getMainConfig()
+	        ->get( 'RestrictUserPageCreationEditThresholdForEmail' );
+            $emailThreshold = $threshold;
+        } catch (Exception $e) {}
+
+        // Check user's edit count
+        if ( $sender->getUser()->getEditCount() < $emailThreshold ) {
+            $status->fatal(
+                wfMessage( 'restrictuserpagecreation-email-denied' )->params( $emailThreshold )
             );	
             return false;
         }
@@ -46,4 +70,3 @@ class RestrictUserPageCreationHooks {
         return true;
     }
 }
-
