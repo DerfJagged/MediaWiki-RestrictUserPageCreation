@@ -13,7 +13,7 @@ wfLoadExtension( "RestrictUserPageCreation" );
 ```
 
 ## Configuration
-Add the following setting to LocalSettings.php with the desired threshold.
+Add the following settings to LocalSettings.php with the desired threshold.
 By default, both thresholds are set to 2 if not specified.
 
 ```
